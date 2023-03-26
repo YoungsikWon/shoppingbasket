@@ -31,10 +31,16 @@
 
 <script>
 import Card from "@/components/Card.vue";
+import axios from "axios";
 
 export default {
   name: 'Home',
-  components: {Card}
+  components: {Card},
+  setup(){
+    axios.get("/api/items").then(res => {
+      console.log(res.data);
+    });
+  }
 }
 </script>
 
