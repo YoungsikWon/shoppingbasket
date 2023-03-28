@@ -1,25 +1,26 @@
 package org.david.galley.backend.controller;
 
 
+import lombok.RequiredArgsConstructor;
+import org.david.galley.backend.entity.Item;
+import org.david.galley.backend.repository.ItemRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api")
 public class ItemController {
 
-    @GetMapping("/items")
-    public List<String> getItem(){
+    private final ItemRepository itemRepository;
 
-        ArrayList<String> items = new ArrayList<>();
-        items.add("Item 1");
-        items.add("Item 2");
-        items.add("Item 3");
-        items.add("Item 4");
+    @GetMapping("/items")
+    public List<Item> getItem(){
+
+        List<Item> items = itemRepository.findAll();
 
         return items;
 
